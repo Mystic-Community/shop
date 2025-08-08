@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>متجري - اسم المحل</title>
+  <style>
+    :root{
+      --accent:#6b5bff;
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#222;
+    }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{margin:0;background:var(--bg);color:var(--text);line-height:1.4}
+    header{background:linear-gradient(90deg,var(--accent),#8b7bff);color:#fff;padding:18px}
+    .container{max-width:1100px;margin:18px auto;padding:0 16px}
+    .logo{font-weight:700;font-size:20px}
+    .hero{display:flex;gap:18px;align-items:center;background:var(--card);padding:22px;border-radius:12px;box-shadow:0 6px 20px rgba(15,15,30,0.06)}
+    .hero img{width:220px;border-radius:8px}
+    .hero .txt h1{margin:0 0 8px 0;font-size:22px}
+    .hero .txt p{margin:0;color:#555}
+    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(12,12,30,0.06);display:flex;flex-direction:column}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .card h3{margin:10px 0 6px;font-size:16px}
+    .price{font-weight:700;margin-bottom:8px}
+    .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer}
+    footer{margin-top:28px;padding:18px;text-align:center;color:#666}
+    /* modal */
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{background:#fff;padding:18px;border-radius:12px;max-width:480px;width:100%}
+    .close{float:right;cursor:pointer;font-weight:700}
+    /* small */
+    @media(max-width:600px){.hero{flex-direction:column}.hero img{width:100%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">اسم متجرك هنا</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ======== تعديل: غيّر نص الترحيب والإيميل أدناه ======== -->
+    <section class="hero" aria-label="banner">
+      <img src="https://picsum.photos/seed/shop1/600/400" alt="banner">
+      <div class="txt">
+        <h1>مرحبا في متجرنا</h1>
+        <p>منتجات عالية الجودة — اختر المنتج واضغط "اطلب" للتواصل.</p>
+        <p style="margin-top:8px;color:#444">للطلب أو الاستفسار: <strong id="ownerEmail">you@example.com</strong></p>
+      </div>
+    </section>
+
+    <!-- ======== منتجات: عدّل بيانات المنتجات هنا ======== -->
+    <section class="products" id="products">
+
+      <!-- PRODUCT CARD START -->
+      <article class="card" data-name="منتج تجريبي 1" data-price="10$">
+        <img src="https://picsum.photos/seed/p1/600/400" alt="منتج 1">
+        <h3>منتج تجريبي 1</h3>
+        <div class="price">10$</div>
+        <div style="margin-top:auto"><button class="btn buy">اطلب الآن</button></div>
+      </article>
+      <!-- PRODUCT CARD END -->
+
+      <!-- PRODUCT CARD START -->
+      <article class="card" data-name="منتج تجريبي 2" data-price="20$">
+        <img src="https://picsum.photos/seed/p2/600/400" alt="منتج 2">
+        <h3>منتج تجريبي 2</h3>
+        <div class="price">20$</div>
+        <div style="margin-top:auto"><button class="btn buy">اطلب الآن</button></div>
+      </article>
+      <!-- PRODUCT CARD END -->
+
+      <!-- اضف أو عدّل المزيد من البطاقات بنفس الشكل -->
+    </section>
+
+    <footer>
+      تصميم سريع • تقدر تعدّل النصوص والصور بسهولة من GitHub.
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <div><span class="close" id="modalClose">×</span></div>
+      <h2 id="modalTitle">تفاصيل الطلب</h2>
+      <p id="modalBody">اسم المنتج</p>
+      <div style="margin-top:12px">
+        <button class="btn" id="modalEmail">راسل عبر الإيميل</button>
+        <button class="btn" id="modalCopy" style="margin-left:8px">نسخ اسم المنتج</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== تعديل سهل: ضع إيميلك هنا ليتغير الرابط ======
+    const ownerEmail = "you@example.com"; // <-- غير هذا للإيميل الحقيقي
+    document.getElementById('ownerEmail').innerText = ownerEmail;
+
+    // شراء (فتح مودال)
+    const modalBg = document.getElementById('modalBg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalEmail = document.getElementById('modalEmail');
+    const modalCopy = document.getElementById('modalCopy');
+
+    document.querySelectorAll('.buy').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const card = e.target.closest('.card');
+        const name = card.getAttribute('data-name') || card.querySelector('h3').innerText;
+        const price = card.getAttribute('data-price') || '';
+        modalTitle.innerText = "أنت تطلب: " + name;
+        modalBody.innerText = "السعر: " + price + "\\n\\nيمكنك مراسلتنا من خلال الإيميل أو نسخ اسم المنتج.";
+        modalEmail.onclick = ()=> {
+          // يفتح تطبيق الإيميل مع موضوع جاهز
+          window.location.href = `mailto:${ownerEmail}?subject=طلب%20${encodeURIComponent(name)}&body=مرحبًا،%20أرغب%20في%20شراء%20${encodeURIComponent(name)}%20سعر%20${encodeURIComponent(price)}.`;
+        };
+        modalCopy.onclick = ()=>{
+          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ اسم المنتج"));
+        };
+        modalBg.style.display = 'flex';
+      });
+    });
+
+    document.getElementById('modalClose').onclick = ()=> modalBg.style.display = 'none';
+    modalBg.addEventListener('click', e=> { if(e.target === modalBg) modalBg.style.display = 'none'; });
+
+    // ملاحظة: لو عاوز نظام دفع حقيقي (PayPal/Stripe) لازم تضيف إعدادات خارجية أو صفحة checkout.
+  </script>
+</body>
+</html>
