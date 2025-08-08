@@ -49,7 +49,6 @@
       <div class="txt">
         <h1>مرحبا في متجرنا</h1>
         <p>الميزات المدفوعة في الخادم — اختر المنتج واضغط "اطلب" للتواصل.</p>
-        <p style="margin-top:8px;color:#444">للطلب أو الاستفسار : <strong id="ownerEmail">https://discord.gg/F6DcD8G7NJ</strong></p>
       </div>
     </section>
 
@@ -183,14 +182,13 @@
         const card = e.target.closest('.card');
         const name = card.getAttribute('data-name') || card.querySelector('h3').innerText;
         const price = card.getAttribute('data-price') || '';
-        modalTitle.innerText = "أنت تطلب: " + name;
-        modalBody.innerText = "السعر: " + price + "\\n\\nيمكنك مراسلتنا من خلال الإيميل أو نسخ اسم المنتج.";
+        modalBody.innerText = "السعر: " + price + "يرجي التواصل معنا من خلال الديسكورد";
         modalEmail.onclick = ()=> {
           // يفتح تطبيق الإيميل مع موضوع جاهز
           window.location.href = `mailto:${ownerEmail}?subject=طلب%20${encodeURIComponent(name)}&body=مرحبًا،%20أرغب%20في%20شراء%20${encodeURIComponent(name)}%20سعر%20${encodeURIComponent(price)}.`;
         };
         modalCopy.onclick = ()=>{
-          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ اسم المنتج"));
+          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ رابط الديسكورد"));
         };
         modalBg.style.display = 'flex';
       });
