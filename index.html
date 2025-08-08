@@ -38,9 +38,17 @@
 <body>
   <header>
     <div class="container">
-      <div class="logo">Mystic Network Server</div>
+      <img src="https://i.pinimg.com/736x/7a/37/51/7a3751594df6ead4f679d4b767e3f33a.jpg" alt="logo"> <div class="logo">Mystic Network Server</div>
     </div>
   </header>
+ <!-- شريط علوي مع لوجو ديسكورد -->
+  <div class="top-bar">
+    <div class="discord-logo">
+      <a href="https://discord.gg/F6DcD8G7NJ" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
+      </a>
+    </div>
+  </div>
 
   <main class="container">
     <!-- ======== تعديل: غيّر نص الترحيب والإيميل أدناه ======== -->
@@ -49,7 +57,7 @@
       <div class="txt">
         <h1>اهلا بك في المتجر </h1>
         <p>يتم عرض الميزات المدفوعة داخل الخادم في هذا الموقع</p>
-       <p style="margin-top:8px;color:#444">للطلب أو الاستفسار: <strong id="ownerEmail">https://discord.gg/F6DcD8G7NJ</strong></p>
+       <p style="margin-top:8px;color:#444">للطلب أو الاستفسار : <strong id="ownerEmail">https://discord.gg/F6DcD8G7NJ</strong></p>
       </div>
     </section>
 
@@ -127,13 +135,6 @@
 
     document.getElementById('modalClose').onclick = ()=> modalBg.style.display = 'none';
     modalBg.addEventListener('click', e=> { if(e.target === modalBg) modalBg.style.display = 'none'; });
-<div class="top-bar">
-    <div class="discord-logo">
-      <a href="https://discord.gg/F6DcD8G7NJ" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
-      </a>
-    </div>
-  </div>
 
     // ملاحظة: لو عاوز نظام دفع حقيقي (PayPal/Stripe) لازم تضيف إعدادات خارجية أو صفحة checkout.
   </script>
