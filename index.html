@@ -182,13 +182,14 @@
         const card = e.target.closest('.card');
         const name = card.getAttribute('data-name') || card.querySelector('h3').innerText;
         const price = card.getAttribute('data-price') || '';
-        modalBody.innerText = "السعر: " + price + "يرجي التواصل معنا من خلال الديسكورد";
+        modalTitle.innerText = "أنت تطلب: " + name;
+        modalBody.innerText = "السعر: " + price + "\\n\\nيمكنك مراسلتنا من خلال الإيميل أو نسخ اسم المنتج.";
         modalEmail.onclick = ()=> {
           // يفتح تطبيق الإيميل مع موضوع جاهز
           window.location.href = `mailto:${ownerEmail}?subject=طلب%20${encodeURIComponent(name)}&body=مرحبًا،%20أرغب%20في%20شراء%20${encodeURIComponent(name)}%20سعر%20${encodeURIComponent(price)}.`;
         };
         modalCopy.onclick = ()=>{
-          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ رابط الديسكورد"));
+          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ اسم المنتج"));
         };
         modalBg.style.display = 'flex';
       });
