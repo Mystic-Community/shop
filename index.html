@@ -106,7 +106,7 @@
 
   <script>
     // ====== تعديل سهل: ضع إيميلك هنا ليتغير الرابط ======
-    const ownerEmail = "you@example.com"; // <-- غير هذا للإيميل الحقيقي
+    const ownerEmail = "AspectStoreContent@gmail.com"; // <-- غير هذا للإيميل الحقيقي
     document.getElementById('ownerEmail').innerText = ownerEmail;
 
     // شراء (فتح مودال)
@@ -128,7 +128,7 @@
           window.location.href = `mailto:${ownerEmail}?subject=طلب%20${encodeURIComponent(name)}&body=مرحبًا،%20أرغب%20في%20شراء%20${encodeURIComponent(name)}%20سعر%20${encodeURIComponent(price)}.`;
         };
         modalCopy.onclick = ()=>{
-          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ اسم المنتج"));
+          navigator.clipboard?.writeText(name).then(()=>alert("تم نسخ رابط سيرفر الديسكورد ✅"));
         };
         modalBg.style.display = 'flex';
       });
