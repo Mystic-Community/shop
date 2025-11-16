@@ -1,469 +1,205 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mystic Network</title>
-  <link rel="icon" type="image/png" href="imgs/11.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Network</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;}
+        body {
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+            background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+            color:#fff;min-height:100vh;overflow-x:hidden;
+        }
+        #bg-video {
+            position:fixed;top:50%;left:50%;min-width:100%;min-height:100%;
+            width:auto;height:auto;transform:translate(-50%,-50%);
+            z-index:-2;object-fit:cover;
+        }
+        #bg-overlay {
+            backdrop-filter:blur(2px);background-color:#0000007a;
+            position:fixed;top:0;bottom:0;left:0;right:0;z-index:-1;
+        }
+        .logo img {height:60px;}
+        nav {
+            display:flex;justify-content:space-between;align-items:center;
+            background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);
+            height:80px;padding:0 30px;
+        }
+        .nav-links {display:flex;gap:20px;list-style:none;}
+        .nav-links a {
+            color:#fff;text-decoration:none;font-weight:500;
+            transition:all 0.3s;padding:8px 14px;border-radius:8px;
+        }
+        .nav-links a:hover {background:rgb(4 173 173);}
+        .container {margin:0 auto;padding:40px 20px;position:relative;z-index:1;}
+        .hero {text-align:center;margin-bottom:60px;}
+        .hero img {height:90px;margin-bottom:30px;}
+        .subtitle {
+            font-size:40px;color:#cbd5e1;margin-bottom:30px;
+            font-family: "Changa", sans-serif;
+        }
+        .discord-btn {
+            display:inline-flex;align-items:center;gap:10px;background:#5865F2;
+            color:white;padding:12px 25px;border-radius:12px;text-decoration:none;
+            font-weight:600;transition:all 0.3s;margin-top:30px;font-size:16px;
+        }
+        .discord-btn:hover {background:#4752C4;transform:scale(1.05);
+            box-shadow:0 10px 30px rgba(88,101,242,0.4);}
+        .status-container {
+            display:flex;flex-wrap:wrap;justify-content:center;gap:20px;
+            margin-top:30px;
+        }
+        .status-card {
+            background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);
+            border:1px solid rgba(255,255,255,0.1);
+            border-radius:20px;padding:25px;width:260px;
+            transition:all 0.3s;position:relative;overflow:hidden;
+        }
+        .status-card:hover {
+            transform:translateY(-10px);border-color:#4ade80;
+            box-shadow:0 10px 40px rgba(74,222,128,0.3);
+        }
+        .card-title {font-size:18px;margin-bottom:15px;color:#4ade80;
+            display:flex;align-items:center;gap:10px;}
+        .card-content {font-size:18px;color:#e2e8f0;}
+        .spinner {
+            width:20px;height:20px;border:3px solid rgba(74,222,128,0.3);
+            border-top-color:#4ade80;border-radius:50%;
+            animation:spin 1s linear infinite;
+        }
+        @keyframes spin {to {transform:rotate(360deg);}}
+        .status-badge {
+            display:inline-flex;align-items:center;gap:8px;
+            padding:8px 16px;border-radius:20px;font-size:14px;font-weight:600;
+        }
+        .status-online {background:rgba(74,222,128,0.2);color:#4ade80;border:1px solid #4ade80;}
+        .status-offline {background:rgba(239,68,68,0.2);color:#ef4444;border:1px solid #ef4444;}
+        .status-dot {width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite;}
+        .status-online .status-dot {background:#4ade80;}
+        .status-offline .status-dot {background:#ef4444;}
+        @keyframes pulse {0%,100%{opacity:1;}50%{opacity:0.5;}}
+        .info-value {font-size:22px;font-weight:bold;color:#4ade80;margin-top:10px;}
+        .error-message {
+            color:#ef4444;padding:15px;background:rgba(239,68,68,0.1);
+            border:1px solid #ef4444;border-radius:12px;margin-top:20px;
+        }
+        @media (max-width:768px){
+            .hero img{height:80px;}
+            .subtitle{font-size:18px;}
+            .discord-btn{font-size:15px;padding:10px 20px;}
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo+Play:wght@200..1000&family=Cairo:wght@200..1000&family=Changa:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="https://r2.guns.lol/dcd0e93e-a503-4743-941e-815433cb2be5.mp4" type="video/mp4">
+    </video>
+    <div id="bg-overlay"></div>
 
-<header class="bg-light shadow-sm">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="https://discord.gg/fZu5yWf43c" target="_blank">
-        <img src="imgs/newlog.png" alt="Mystic Logo" height="50">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            
-          </li>
+    <nav>
+        <div class="logo"><img src="logo.webp" alt=""></div>
+        <ul class="nav-links">
+            <a href="#">Home</a>
+            <a href="store.html">Store</a>
+            <a href="#">Games</a>
+            <a href="https://discord.gg/SvbZCf3Bhv" target="_blank">Support</a>
         </ul>
-      </div>
     </nav>
-  </div>
-</header>
 
-<section class="text-center mt-5">
-  <h1 class="fw-bold display-5">أهلا بك في المتجر</h1>
-  <p class="text-muted fs-5 mt-3">يتم عرض الميزات المدفوعة داخل الخادم في هذا الموقع</p>
-</section>
-
-<section class="container my-5">
-  <div class="row g-4">
-
-    <!-- VIP -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" data-bs-toggle="modal" data-bs-target="#vipModal">
-        <img src="imgs/rank (1).png" class="card-img-top p-3" alt="VIP">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">VIP RANK</h5>
-          <p class="box">1 $ | 50 EGP</p>
+    <div class="container">
+        <div class="hero">
+            <img src="newlog.png" alt="">
+            <p class="subtitle">سيرفر ماين كرافت عربي</p>
         </div>
-      </div>
-    </div>
 
-    <!-- WITHER -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" data-bs-toggle="modal" data-bs-target="#witherModal">
-        <img src="imgs/rank (2).png" class="card-img-top p-3" alt="WITHER">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">ELITE RANK</h5>
-          <p class="box">2 $ | 100 EGP</p>
-        </div>
-      </div>
-    </div>
+        <div class="status-container">
+            <div class="status-card">
+                <div class="card-title">Server status</div>
+                <div class="card-content" id="server-status">
+                    <div class="spinner"></div> Loading...
+                </div>
+            </div>
 
-    <!-- DRAGON -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" data-bs-toggle="modal" data-bs-target="#dragonModal">
-        <img src="imgs/rank (3).png" class="card-img-top p-3" alt="DRAGON">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">MYTH RANK</h5>
-          <p class="box">3 $ | 150 EGP</p>
+            <div class="status-card">
+                <div class="card-title">Online players</div>
+                <div class="card-content" id="players-count">
+                    <div class="spinner"></div> Loading...
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="card-title">IP</div>
+                <div class="card-content">
+                    <div class="info-value">mystic.ovh</div>
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="card-title">Port</div>
+                <div class="card-content">
+                    <div class="info-value">19132</div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div id="error-container"></div>
     </div>
 
-    <!-- MYSTIC -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" data-bs-toggle="modal" data-bs-target="#mysticModal">
-        <img src="imgs/rank (4).png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">MYSTIC RANK</h5>
-          <p class="box">4 $ | 200 EGP</p>
-        </div>
-      </div>
-    </div>
-    <!-- MSUPE -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/spelytra.png" class="card-img-top p-3" alt="Super Elytra">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Super Elytra</h5>
-          <p class="box">1.50 $ | 75 EGP</p>
-          <h5 class="card-title fw-bold">Fly Without Firework</h5>
-        </div>
-      </div>
-    </div>
-    <!-- MYSTIC -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/sup.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Super Pickaxe</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          <h5 class="card-title fw-bold">Break 3x3</h5>
-        </div>
-      </div>
-    </div>
-    <!-- MYSTIC -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/axe.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Super AXE</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          <h5 class="card-title fw-bold">Destroy All Tree</h5>
-        </div>
-      </div>
-    </div>
-    <!-- MYSTIC -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/shovel.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Super AXE</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          <h5 class="card-title fw-bold">Break 3x3</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/sh.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Super Hoe</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          <h5 class="card-title fw-bold">Make Farming Easy</h5>
-        </div>
-      </div>
-    </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/unbk.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">2X Super BOOK</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          <h5 class="card-title fw-bold">Make item unbreakble</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/bal.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">200K Money</h5>
-          <p class="box">1 $ | 50 EGP</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/Grass_Block.webp" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">2500 Claim Block</h5>
-          <p class="box">0.50 $ | 25 EGP</p>
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/backtier1.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Basic BackPack</h5>
-          <p class="box">0.50 $ | 25 EGP</p>
-          <h5 class="card-title fw-bold">Solt : 54</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/backtier22.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Golden BackPack</h5>
-          <p class="box">0.75 $ | 35 EGP</p>
-          <h5 class="card-title fw-bold">Solt : 90</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/backtier32.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Diamond BackPack</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          <h5 class="card-title fw-bold">Solt : 180</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/150px-Chest.gif" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Emerald Crate</h5>
-          <p class="box">1.50 $ | 75 EGP</p>
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/150px-Chest.gif" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Gold Crate</h5>
-          <p class="box">1 $ | 50 EGP</p>
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/150px-Chest.gif" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Bronze Crate</h5>
-          <p class="box">0.50 $ | 25 EGP</p>
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/68747470733a2f2f692e67697068792e636f6d2f6d656469612f76312e59326c6b505463354d4749334e6a45786133513363335935636d6b33626e6f784d6a6b7a623256686444686d596d39335a5751306257707a5a6e526e6144426d655734304d535a.gif" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">All Glow colors</h5>
-          <p class="box">0.50 $ | 25 EGP</p>
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/extrahome.webp" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Extra 5 Sethome</h5>
-          <p class="box">0.50 $ | 25 EGP</p>
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card h-100 text-center shadow box" >
-        <img src="imgs/Paper_JE2_BE2.png" class="card-img-top p-3" alt="MYSTIC">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">Extra 5 Perks</h5>
-          <p class="box">0.50 $ | 25 EGP</p>
-          <h5 class="card-title fw-bold">Perks : /hat , Break Spawner , /repair , /feed , /anvil</h5>
-        </div>
-      </div>
-    </div>
+    <script>
+async function fetchServerStatus() {
+    try {
+        const response = await fetch('https://mcapi.us/server/status?ip=mystic.ovh&port=19132');
+        const data = await response.json();
 
-  </div>
-  
+        const statusElement = document.getElementById('server-status');
+        const playersElement = document.getElementById('players-count');
 
-  </div>
-  
-</section>
+        if (data.online === true) {
+            statusElement.innerHTML = `
+                <span class="status-badge status-online">
+                    <span class="status-dot"></span> Online
+                </span>`;
 
-<!-- ================= MODALS ================= -->
+            const currentPlayers = data.players?.now ?? 0;
+            const maxPlayers = data.players?.max ?? 0;
 
-<!-- VIP -->
-<div class="modal fade" id="vipModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">مميزات VIP RANK</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <ul>
-          <li>جائزة عشوائية من المتجر</li>
-          <li>دخول السرفر لو ممتلئ</li>
-          <li>750 كليم بلوك</li>
-          <li>لون مميز في التاب</li>
-          <li>لون مميز في الشات</li>
-          <li>/glow (green,darkgreen)</li>
-          <li>VIP KIT</li>
-          <li>2 سيت هوم</li>
-          <li>تسطيع كسر الاسبونر ب سلك تاتش</li>
-          <li>chat color</li>
-          <li>/delhome</li>
-          <li>/ec</li>
-          <li>/grindstone</li>
-          <li>/hat</li>
-          <li>/ignore</li>
-          <li>/loom</li>
-          <li>/spin</li>
-          <li>Costmetics ↓</li>
-          <li>Death Effect (Lighting)</li>
-          <li>2 Emotes</li>
-          <li>2 Mounts</li>
-          <li>1 Particlee</li>
-          <li>يوجد مميزات اخري لا داعلي لذكرها</li>
-          <li><strong>مدة الرتبه : دائم</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+            playersElement.innerHTML = `
+                <div class="info-value">${currentPlayers} / ${maxPlayers}</div>
+            `;
+        } else {
+            statusElement.innerHTML = `
+                <span class="status-badge status-offline">
+                    <span class="status-dot"></span> Offline
+                </span>`;
 
-<!-- WITHER -->
-<div class="modal fade" id="witherModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">مميزات ELITE RANK</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <ul>
-          <li>جائزة عشوائية من المتجر</li>
-          <li>دخول السرفر لو ممتلئ</li>
-          <li>750 كليم بلوك</li>
-          <li>لون مميز في التاب</li>
-          <li>لون مميز في الشات</li>
-          <li>3 سيت هوم</li>
-          <li>تسطيع كسر الاسبونر ب سلك تاتش</li>
-          <li>/glow (aqua,blue,christmas,dark aqua,dark blue,dark green,dark purble,green)</li>
-          <li>WITHER KIT</li>
-          <li>Chat color</li>
-          <li>/delhome</li>
-          <li>/ec</li>
-          <li>/grindstone</li>
-          <li>/loom</li>
-          <li>/hat</li>
-          <li>/ignore</li>
-          <li>/pay offline</li>
-          <li>/smithingtable</li>
-          <li>/stonecutter</li>
-          <li>Cosmetics ↓</li>
-          <li>2 Death Effect</li>
-          <li>4 Emotes</li>
-          <li>3 Mounts</li>
-          <li>2 Particlee</li>
-          <li>يوجد مميزات اخري لا داعلي لذكرها</li>
-          <li><strong>مدة الرتبه : دائم</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+            playersElement.innerHTML = `
+                <div class="info-value">-- / --</div>
+            `;
+        }
+    } catch (error) {
+        document.getElementById('server-status').innerHTML = `
+            <span class="status-badge status-offline">
+                <span class="status-dot"></span> Error
+            </span>`;
 
-<!-- DRAGON -->
-<div class="modal fade" id="dragonModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">مميزات MYTH RANK</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <ul>
-          <li>جائزة عشوائية من المتجر</li>
-          <li>دخول السرفر لو ممتلئ</li>
-          <li>1000 كليم بلوك</li>
-          <li>لون مميز في التاب</li>
-          <li>لون مميز في الشات</li>
-          <li>4 سيت هوم</li>
-          <li>تسطيع كسر الاسبونر ب سلك تاتش</li>
-          <li>/glow (10+ Colors + Rainbow )</li>
-          <li>DRAGON KIT</li>
-          <li>Chat color</li>
-          <li>Mention</li>
-          <li>/back</li>
-          <li>/back on death</li>
-          <li>/book</li>
-          <li>/cartoghraphytable</li>
-          <li>/delhome</li>
-          <li>/trash</li>
-          <li>/ec</li>
-          <li>/feed</li>
-          <li>/grindstone</li>
-          <li>/hat</li>
-          <li>/ignore</li>
-          <li>/loom</li>
-          <li>/pay offline</li>
-          <li>/pay multiple</li>
-          <li>/realname</li>
-          <li>/smithingtable</li>
-          <li>/stonecutter</li>
-          <li>Cosmetics ↓</li>
-          <li>3 Death Effect</li>
-          <li>9 Emotes</li>
-          <li>4 Mounts</li>
-          <li>3 Particlee</li>
-          <li>يوجد مميزات اخري لا داعلي لذكرها</li>
-          <li><strong>مدة الرتبه : دائم</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+        document.getElementById('players-count').innerHTML = `
+            <div class="info-value">-- / --</div>
+        `;
 
-<!-- MYSTIC -->
-<div class="modal fade" id="mysticModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">مميزات MYSTIC RANK</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <ul>
-          <li>جائزة عشوائية من المتجر</li>
-          <li>دخول السرفر لو ممتلئ</li>
-          <li>1500 كليم بلوك</li>
-          <li>لون مميز في التاب</li>
-          <li>لون مميز في الشات</li>
-          <li>5 سيت هوم</li>
-          <li>تسطيع كسر الاسبونر ب سلك تاتش</li>
-          <li>/glow (ALL)</li>
-          <li>MYSTIC KIT</li>
-          <li>Chat color</li>
-          <li>Mention</li>
-          <li>/anvil</li>
-          <li>/back</li>
-          <li>/back on death</li>
-          <li>/beezoka</li>
-          <li>/book</li>
-          <li>/cartoghraphytable</li>
-          <li>/delhome</li>
-          <li>/trash</li>
-          <li>/ec</li>
-          <li>/feed</li>
-          <li>/grindstone</li>
-          <li>/hat</li>
-          <li>/ignore</li>
-          <li>/kitycannon</li>
-          <li>/loom</li>
-          <li>/near</li>
-          <li>/pay offline</li>
-          <li>/pay multiple</li>
-          <li>/realname</li>
-          <li>/renamehome</li>
-          <li>/repair</li>
-          <li>/skull</li>
-          <li>/smithingtable</li>
-          <li>/stonecutter</li>
-          <li>/spin</li>
-          <li>/nick</li>
-          <li>Cosmetics ↓</li>
-          <li>All Emotes</li>
-          <li>All Particlee</li>
-          <li>All Death Effect</li>
-          <li>4 Mounts</li>
-          <li>يوجد مميزات اخري لا داعلي لذكرها</li>
-          <li><strong>مدة الرتبه : دائم</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+        document.getElementById('error-container').innerHTML = `
+            <div class="error-message">⚠️ Please try again</div>
+        `;
+    }
+}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+fetchServerStatus();
+setInterval(fetchServerStatus, 30000);
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
