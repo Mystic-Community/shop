@@ -159,7 +159,7 @@
     <script>
 async function fetchServerStatus() {
     try {
-        const response = await fetch('https://mcapi.us/server/status?ip=mystic.ovh&port=19132');
+        const response = await fetch('https://mcapi.us/server/status?ip=mystic.ovh&port=22366');
         const data = await response.json();
 
         const statusElement = document.getElementById('server-status');
@@ -209,3 +209,4 @@ setInterval(fetchServerStatus, 30000);
 
 </body>
 </html>
+
