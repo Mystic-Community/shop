@@ -159,7 +159,7 @@
     <script>
 async function fetchServerStatus() {
     try {
-        const response = await fetch('https://mcapi.us/server/status?ip=mystic.ovh&port=22366');
+        const response = await fetch('https://api.mcsrvstat.us/3/mystic.ovh:22366');
         const data = await response.json();
 
         const statusElement = document.getElementById('server-status');
@@ -171,7 +171,8 @@ async function fetchServerStatus() {
                     <span class="status-dot"></span> Online
                 </span>`;
 
-            const currentPlayers = data.players?.now ?? 0;
+            // الصح هنا:
+            const currentPlayers = data.players?.online ?? 0;
             const maxPlayers = data.players?.max ?? 0;
 
             playersElement.innerHTML = `
@@ -206,6 +207,7 @@ async function fetchServerStatus() {
 fetchServerStatus();
 setInterval(fetchServerStatus, 30000);
 </script>
+
 
 </body>
 </html>
