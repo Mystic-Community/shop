@@ -171,6 +171,55 @@
             .subtitle{font-size:18px;}
             .discord-btn{font-size:15px;padding:10px 20px;}
         }
+        .rank-table {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.rank-table th {
+    background: #007bff;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.rank-table td {
+    background: transparent !important;
+    padding: 14px;
+    font-size: 17px;
+    border: 1px solid rgba(255,255,255,0.05);
+    color:#0fb96a;
+    font-weight: bold;
+}
+
+.rank-table .old {
+    text-decoration: line-through;
+    color: #ff6b6b;
+    margin: 3px;
+}
+
+.rank-table .new {
+    color: #4069d9;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.server-title td {
+    background: rgba(0, 0, 0, 0.30) !important;
+    font-weight: bold;
+    color: #60a5fa;
+    font-size: 20px;
+    padding: 10px;
+    border: none !important;
+}
+.t {
+  color: #4bc6ff7a;
+}
   </style>
 </head>
 
@@ -213,7 +262,7 @@
           <img src="Store IMGS/Ranks/VIP.png">
           <h5 class="fw-bold">VIP Rank</h5>
           <h7 class="fw-bold">(Lifetime)</h7>
-          <p><span class="old-price">$3.50</span> <span class="new-price">$1.50 | 75 EGP</span></p>
+          <p><span class="old-price">$3.50</span> <span class="new-price">$2 | 100 EGP</span></p>
           <a href="https://discord.gg/SvbZCf3Bhv" target="_blank">
           <button class="btn-shop">Buy </button>
           </a>
@@ -225,7 +274,7 @@
           <img src="Store IMGS/Ranks/Elite.png">
           <h5 class="fw-bold">Elite Rank</h5>
           <h7 class="fw-bold">(Lifetime)</h7>
-          <p><span class="old-price">$5.00</span> <span class="new-price">$2.50 | 150 EGP</span></p>
+          <p><span class="old-price">$5.00</span> <span class="new-price">$3 | 150 EGP</span></p>
           <a href="https://discord.gg/SvbZCf3Bhv" target="_blank">
           <button class="btn-shop">Buy </button>
           </a>
@@ -237,7 +286,7 @@
           <img src="Store IMGS/Ranks/Myth.png">
           <h5 class="fw-bold">Myth Rank</h5>
           <h7 class="fw-bold">(Lifetime)</h7>
-          <p><span class="old-price">$8.00</span> <span class="new-price">$4 | 200 EGP</span></p>
+          <p><span class="old-price">$8.00</span> <span class="new-price">$5 | 250 EGP</span></p>
           <a href="https://discord.gg/SvbZCf3Bhv" target="_blank">
           <button class="btn-shop">Buy </button>
           </a>
@@ -248,12 +297,231 @@
           <img src="Store IMGS/Ranks/Mystic.png">
           <h5 class="fw-bold">Mystic Rank</h5>
           <h7 class="fw-bold">(Lifetime)</h7>
-          <p><span class="old-price">$10.00</span> <span class="new-price">$6 | 300 EGP</span></p>
+          <p><span class="old-price">$10.00</span> <span class="new-price">$8 | 400 EGP</span></p>
           <a href="https://discord.gg/SvbZCf3Bhv" target="_blank">
           <button class="btn-shop">Buy </button>
           </a>
         </div>
       </div>
+      <table class="rank-table table table-bordered text-center align-middle">
+    <thead>
+        <tr>
+            <th class="t">Perk</th>
+            <th>VIP Rank</th>
+            <th>Elite Rank</th>
+            <th>Myth Rank</th>
+            <th>Mystic Rank</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody class="t">
+      <tr class="server-title">
+            <td colspan="5">Global</td>
+        </tr>
+
+        <tr>
+            <td>/Fly (Hub-Spawn)</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/Spin</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>Join Full Server</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>Speical Chat/Tab Prefix</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/Glow (Colors)</td>
+            <td>Green , DarkGreen</td>
+            <td>Aqua , Purble , 5More</td>
+            <td>Rainbow , 10more</td>
+            <td>All Glow Colors</td>        
+          </tr>
+
+        <tr class="server-title">
+            <td colspan="5">Survival SMP</td>
+        </tr>
+        <tr>
+            <td>Free Money</td>
+            <td>50K</td>
+            <td>85K</td>
+            <td>120K</td>
+            <td>150K</td>        
+          </tr>
+          <tr>
+            <td>Free Crate</td>
+            <td>Bronze Crate</td>
+            <td>Bronze Crate</td>
+            <td>Gold Crate</td>
+            <td>Emerald Crate</td>        
+          </tr>
+        <tr>
+            <td>Auction Solts</td>
+            <td>5</td>
+            <td>8</td>
+            <td>20</td>
+            <td>25</td>        
+          </tr>
+        <tr>
+            <td>Extra Homes</td>
+            <td>5</td>
+            <td>8</td>
+            <td>10</td>
+            <td>14</td>        
+          </tr>
+          <tr>
+            <td>Free BackPack</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️ (Basic BackPack)</td>        
+          </tr>
+          <tr>
+            <td>Free Random SuperItem</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+        <tr>
+            <td>Speical KIT</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+        <tr>
+            <td>/anvil</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/back</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/book</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/cartographytable</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/trash</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/ec</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/feed</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/grindstone</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/hat</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/loom</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/near</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/pay offline</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/repair</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/smithingtable</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+          <tr>
+            <td>/stonecutter</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>✔️</td>
+            <td>✔️</td>        
+          </tr>
+    </tbody>
+</table>
+
 
     </div>
   </div>
