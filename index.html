@@ -141,14 +141,14 @@
             <div class="status-card">
                 <div class="card-title">IP</div>
                 <div class="card-content">
-                    <div class="info-value">mystic.ovh</div>
+                    <div class="info-value">play.mystic.ovh</div>
                 </div>
             </div>
 
             <div class="status-card">
                 <div class="card-title">Port</div>
                 <div class="card-content">
-                    <div class="info-value">22366</div>
+                    <div class="info-value">19132</div>
                 </div>
             </div>
         </div>
@@ -159,7 +159,7 @@
     <script>
 async function fetchServerStatus() {
     try {
-        const response = await fetch('https://api.mcsrvstat.us/3/mystic.ovh:22366');
+        const response = await fetch('https://api.mcsrvstat.us/3/mystic.ovh:19132');
         const data = await response.json();
 
         const statusElement = document.getElementById('server-status');
@@ -211,5 +211,6 @@ setInterval(fetchServerStatus, 30000);
 
 </body>
 </html>
+
 
 
