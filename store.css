@@ -1,123 +1,80 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Tajawal", sans-serif;
-}
-
-/* 🌌 الخلفية */
 body {
-    background: linear-gradient(135deg, #1e1e2f 0%, #2a2a3d 100%);
-    direction: rtl;
-    text-align: right;
-    color: #fff;
-}
+      background: #f5f5f5;
+    }
 
-/* 🌟 الهيدر */
-header {
-    background: linear-gradient(90deg, #f5c32f 0%, #f59f2f 100%);
-    height: 80px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-}
-.navbar-brand img {
-    width: 180px;
-}
-.nav-link {
-    font-size: 20px;
-    color: #fff !important;
-    transition: 0.3s;
-}
-.nav-link:hover {
-    color: #222 !important;
-    letter-spacing: 1px;
-}
+    .sidebar {
+      height: 100vh;
+      padding-top: 30px;
+      position: fixed;
+      width: 220px;
+    }
 
-/* 🟡 القسم الرئيسي */
-.main {
-    background-color: rgba(255,255,255,0.08);
-    height: 250px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-}
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      transition: 0.2s;
+    }
 
-/* 🟢 الصناديق (الرتب) */
-.box {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 10px;
-    margin-bottom: 16px;
-    transition: 0.4s;
-    text-align: center;
-    padding: 15px;
-}
-.box h5{
-    color: white;
-}
-.box p{
-    color: green;
-}
-.box:hover {
-    transform: scale(1.05);
-    background: rgba(255,255,255,0.15);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-}
-.box h3 {
-    color: #f5c32f;
-    font-size: 24px;
-    margin-top: 10px;
-}
-.box p {
-    color: #ccc;
-}
+    .sidebar a:hover, .sidebar a.active {
+      background: #D95E00;
+      color: white;
+    }
 
-/* 🎨 مودال */
-.modal-content {
-    background: #2a2a3d;
-    color: #fff;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-.modal-header {
-    background: #f5c32f;
-    color: #222;
-    border-bottom: none;
-}
-.modal-body ul {
-    padding-right: 20px;
-    list-style: disc;
-}
-.modal-body li {
-    margin-bottom: 6px;
-    color: #eee;
-}
-.btn-close {
-    filter: invert(1);
-}
+    .content-area {
+      margin-left: 240px;
+      padding: 30px;
+    }
 
-/* 🔵 أيقونة الديسكورد */
-.icon {
-    color: #7289da !important;
-    transition: 0.3s;
-}
-.icon:hover {
-    color: #5b6eae !important;
-}
-nav {
-            display:flex;justify-content:space-between;align-items:center;
-            background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);
-            height:80px;padding:0 30px;
-        }
-        .nav-links {display:flex;gap:20px;list-style:none;}
-        .nav-links a {
-            color:#fff;text-decoration:none;font-weight:500;
-            transition:all 0.3s;padding:8px 14px;border-radius:8px;
-        }
-        .nav-links a:hover {background:rgb(4 173 173);}
-        * {margin:0;padding:0;box-sizing:border-box;}
+    .shop-card {
+      
+      
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .shop-card img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: red;
+    }
+    .new-price {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .btn-shop {
+      width: 100%;
+      background: #007bff;
+      border-radius: 25px;
+      font-weight: bold;
+      color: white;
+      padding: 10px;
+      border: none;
+    }
+
+    .btn-shop:hover {
+      background: #0069d9;
+    }
+
+    .hidden {
+      display: none;
+    }
+    * {margin:0;padding:0;box-sizing:border-box;}
         body {
             font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
             background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
@@ -133,11 +90,14 @@ nav {
             position:fixed;top:0;bottom:0;left:0;right:0;z-index:-1;
         }
         .logo img {height:60px;}
+        .logo img:hover {
+          transform: scale(1.1);
+          transition: 0.3s;
+        }
         nav {
             display:flex;justify-content:space-between;align-items:center;
             background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);
             height:80px;padding:0 30px;
-            direction: ltr;
         }
         .nav-links {display:flex;gap:20px;list-style:none;}
         .nav-links a {
@@ -148,7 +108,10 @@ nav {
         .container {margin:0 auto;padding:40px 20px;position:relative;z-index:1;}
         .hero {text-align:center;margin-bottom:60px;}
         .hero img {height:90px;margin-bottom:30px;}
-        .subtitle {font-size:20px;color:#cbd5e1;margin-bottom:30px;}
+        .subtitle {
+            font-size:40px;color:#cbd5e1;margin-bottom:30px;
+            font-family: "Changa", sans-serif;
+        }
         .discord-btn {
             display:inline-flex;align-items:center;gap:10px;background:#5865F2;
             color:white;padding:12px 25px;border-radius:12px;text-decoration:none;
@@ -199,3 +162,52 @@ nav {
             .subtitle{font-size:18px;}
             .discord-btn{font-size:15px;padding:10px 20px;}
         }
+        .rank-table {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.rank-table th {
+    background: #007bff;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.rank-table td {
+    background: transparent !important;
+    padding: 14px;
+    font-size: 17px;
+    border: 1px solid rgba(255,255,255,0.05);
+    color:#0fb96a;
+    font-weight: bold;
+}
+
+.rank-table .old {
+    text-decoration: line-through;
+    color: #ff6b6b;
+    margin: 3px;
+}
+
+.rank-table .new {
+    color: #4069d9;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.server-title td {
+    background: rgba(0, 0, 0, 0.30) !important;
+    font-weight: bold;
+    color: #60a5fa;
+    font-size: 20px;
+    padding: 10px;
+    border: none !important;
+}
+.t {
+  color: #4bc6ff7a;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="games.css"> 
+    <title>Mystic Network | Games</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Background -->
+
+<video autoplay muted loop playsinline id="bg-video">
+    <source src="https://r2.guns.lol/dcd0e93e-a503-4743-941e-815433cb2be5.mp4" type="video/mp4">
+</video>
+<div id="bg-overlay"></div>
+
+<!-- Navbar -->
+
+<nav>
+    <a href="index.html" class="logo"><img src="logo.webp"></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="store.html">Store</a>
+        <a href="#">Games</a>
+        <a href="https://discord.gg/SvbZCf3Bhv" target="_blank">Support</a>
+    </div>
+</nav>
+
+<!-- Content -->
+
+<div class="container">
+    <h1 class="title">Games</h1>
+
+<div class="games-grid">
+
+    <!-- Game Card -->
+    <div class="game-card" data-api="https://api.mcsrvstat.us/3/5.252.100.36:23416">
+    <img src="Games IMGS/SMP_Thumbnail_0.jpg" alt="Survival SMP">
+    <div class="game-content">
+        <div class="game-title">Survival SMP</div>
+        <div class="game-desc">
+         عالم مفتوح متعدد اللاعبين حيث تبدأ من الصفر، تجمع الموارد، تبني قاعدتك، تتعاون مع الأصدقاء أو تتحدى لاعبين آخرين، وتعيش تجربة البقاء على قيد الحياة في بيئة ديناميكية مليئة بالمغامرات والمفاجآت.
+        </div>
+        <div class="players">Players: <span class="players-count">Loading...</span></div>
+    </div>
+</div>
+
+    <div class="game-card" data-api="https://api.mcsrvstat.us/3/5.252.100.36:27199">
+    <img src="Games IMGS/boxpvp.jpeg" alt="Survival SMP">
+    <div class="game-content">
+        <div class="game-title">BoxPvP</div>
+        <div class="game-desc">
+        تحديات قتالية سريعة داخل صناديق صغيرة، قاتل لاعبين آخرين بأسلحة وقدرات متنوعة، وكن آخر من يبقى حيًا للفوز! سرعة، مهارة، واستراتيجية هي مفتاح الانتصار في كل معركة
+        </div>
+        <div class="players">Players: <span class="players-count">Loading...</span></div>
+    </div>
+
+</div>
+
+</div>
+
+<script>
+async function loadPlayers() {
+    const cards = document.querySelectorAll('.game-card');
+
+    for (const card of cards) {
+        const apiUrl = card.dataset.api;
+        const countEl = card.querySelector('.players-count');
+
+        if (!apiUrl) {
+            countEl.textContent = '--';
+            continue;
+        }
+
+        try {
+            const res = await fetch(apiUrl);
+            const data = await res.json();
+
+            if (data.online) {
+                const online = data.players?.online ?? 0;
+                const max = data.players?.max ?? '?';
+                countEl.textContent = `${online} / ${max}`;
+            } else {
+                countEl.textContent = 'Offline';
+            }
+        } catch (e) {
+            countEl.textContent = 'Error';
+        }
+    }
+}
+
+loadPlayers();
+setInterval(loadPlayers, 30000);
+</script>
+
+
+</body>
+</html>
